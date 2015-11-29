@@ -1,11 +1,11 @@
 package com.business.core.app;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -21,19 +21,16 @@ public class Pedido implements Serializable{
     private boolean entregue;
     @ManyToMany
     private List<Produto> produtos;
-    @OneToOne(mappedBy = "pedido")
-    private Comanda comanda;
     
     public Pedido(){
-    
+        this.produtos = new ArrayList();
     }
 
-    public Pedido(int codigo, String cliente, boolean entregue, List<Produto> produtos, Comanda comanda) {
+    public Pedido(int codigo, String cliente, boolean entregue) {
         this.codigo = codigo;
         this.cliente = cliente;
         this.entregue = entregue;
-        this.produtos = produtos;
-        this.comanda = comanda;
+        this.produtos = new ArrayList();
     }
 
     public int getCodigo() {
@@ -66,14 +63,6 @@ public class Pedido implements Serializable{
 
     public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
-    }
-
-    public Comanda getComanda() {
-        return comanda;
-    }
-
-    public void setComanda(Comanda comanda) {
-        this.comanda = comanda;
     }
 
     @Override

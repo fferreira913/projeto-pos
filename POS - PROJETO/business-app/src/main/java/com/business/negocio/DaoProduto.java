@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
  */
 public class DaoProduto {
 
-    EntityManager em = UnityPersistence.getEntityManager();
+    EntityManager em = Conection.getEntityManager();
 
     public boolean salvarProduto(Produto produto) {
 

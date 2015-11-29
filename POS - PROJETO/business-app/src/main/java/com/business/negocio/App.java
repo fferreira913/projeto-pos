@@ -1,10 +1,8 @@
 package com.business.negocio;
 
-import com.business.core.app.Produto;
-import com.business.core.app.Tipo;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import com.business.core.app.Status;
+import com.business.core.app.Titulo;
+import java.util.List;
 
 /**
  *
@@ -13,23 +11,18 @@ import javax.persistence.Persistence;
 public class App {
 
     public static void main(String[] args) {
-        Produto produto = new Produto(1, "Salgado", 6, 1000);
+        DaoTitulo daoTitulo = new DaoTitulo();
         
-        persist(produto);
-    }
-
-    public static void persist(Object object) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence-unity");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        try {
-            em.persist(object);
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            e.printStackTrace();
-            em.getTransaction().rollback();
-        } finally {
-            em.close();
+        List<Titulo> titulos = daoTitulo.listarTitulosPorFornecedor("Hora 10");
+        
+        for (Titulo titulo : titulos) {
+            System.out.println("Titulo: " +titulo.getDescricao());
+        }
+        
+        List<Titulo> titulos1 = daoTitulo.listarTitulosPorStatus(Status.VENCIDO);
+        
+        for (Titulo titulo : titulos1) {
+            System.out.println("Titulo: " +titulo.getDescricao());
         }
     }
 }

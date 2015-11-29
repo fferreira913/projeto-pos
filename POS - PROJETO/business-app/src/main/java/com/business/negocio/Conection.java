@@ -8,7 +8,7 @@ import javax.persistence.Persistence;
  *
  * @author Fatinha de Sousa
  */
-public class UnityPersistence {
+public class Conection {
 
     public static EntityManager getEntityManager() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("persistence-unity");

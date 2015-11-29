@@ -5,6 +5,9 @@
     <class>com.business.core.app.Comanda</class>
     <class>com.business.core.app.Pedido</class>
     <class>com.business.core.app.Produto</class>
+    <class>com.business.core.app.Duplicada</class>
+    <class>com.business.core.app.Promissoria</class>
+    <class>com.business.core.app.Titulo</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/BD-POS-ATT"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

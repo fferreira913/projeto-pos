@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
  */
 public class DaoPedido {
     
-    EntityManager em = UnityPersistence.getEntityManager();
+    EntityManager em = Conection.getEntityManager();
     
     public boolean salvarPedido(Pedido pedido){
         

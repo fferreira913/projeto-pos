@@ -1,0 +1,77 @@
+package com.business.negocio;
+
+import com.business.core.app.Duplicada;
+import com.business.core.app.Promissoria;
+import com.business.core.app.Status;
+import com.business.core.app.Titulo;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+/**
+ *
+ * @author Fatinha de Sousa
+ */
+public class DaoTitulo {
+    
+    EntityManager em = Conection.getEntityManager();
+    
+    public boolean salvarPromissoria(Promissoria promissoria){
+        
+        try {
+            
+            em.getTransaction().begin();
+            em.persist(promissoria);
+            em.getTransaction().commit();
+            
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().getRollbackOnly();
+            return false;
+        }
+    }
+    
+    public boolean salvarDuplicada(Duplicada duplicada){
+        
+        try {
+            
+            em.getTransaction().begin();
+            em.persist(duplicada);
+            em.getTransaction().commit();
+            
+            return true;
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            em.getTransaction().getRollbackOnly();
+            return false;
+        }
+    }
+    
+    public List<Titulo> listarTitulosPorFornecedor(String fornecedor){
+        List<Titulo> titulos = new ArrayList();
+        
+        Query query = em.createQuery("SELECT t FROM Titulo t where t.fornecedor = :fornecedor");
+        query.setParameter("fornecedor", fornecedor);
+        
+        if(!query.getResultList().isEmpty()){
+            titulos = query.getResultList();
+        }else{
+            titulos = null;
+        }
+        
+        return titulos;
+        
+    }
+    
+    public List<Titulo> listarTitulosPorStatus(Status status){
+        
+        Query query = em.createQuery("SELECT t FROM Titulo t where t.status = :status");
+        query.setParameter("status", status);
+        
+        return (List<Titulo>) query.getResultList();
+        
+    }
+}
