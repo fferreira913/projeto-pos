@@ -1,10 +1,11 @@
 package com.server.resource;
 
-import com.br.util.Util;
+import com.br.util.Operacoes;
 import com.business.core.app.Duplicada;
 import com.business.negocio.DaoTitulo;
 import java.io.IOException;
 import java.util.Date;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.restlet.ext.json.JsonRepresentation;
 import org.restlet.representation.Representation;
@@ -20,18 +21,18 @@ import org.restlet.resource.ServerResource;
 public class DuplicadaResource extends ServerResource{
     
     @Post
-    public Representation salvarDuplicada(Representation representation) throws IOException{
+    public Representation salvarDuplicada(Representation representation) throws IOException, JSONException{
         JsonRepresentation jsonRepresentation = new JsonRepresentation(representation);
         JSONObject jSONObject = jsonRepresentation.getJsonObject();
         
         Duplicada duplicada = new Duplicada();
         duplicada.setNumero(jSONObject.getString("numero"));
-        duplicada.setBanco(Util.verificarBanco(jSONObject.getString("banco")));
+        duplicada.setBanco(Operacoes.verificarBanco(jSONObject.getString("banco")));
         duplicada.setDataEmissao(new Date());
         duplicada.setDataPagamento(new Date());
         duplicada.setDescricao(jSONObject.getString("descricao"));
         duplicada.setFornecedor(jSONObject.getString("fornecedor"));
-        duplicada.setStatus(Util.verificaStatus(jSONObject.getString("status")));
+        duplicada.setStatus(Operacoes.verificaStatus(jSONObject.getString("status")));
         
         DaoTitulo daoTitulo = new DaoTitulo();
         if(daoTitulo.salvarDuplicada(duplicada)){

@@ -1,11 +1,11 @@
 package com.br.server;
 
-import com.business.core.app.Promissoria;
 import com.server.resource.ComandaResource;
 import com.server.resource.DuplicadaResource;
 import com.server.resource.PedidoResource;
 import com.server.resource.ProdutoResource;
 import com.server.resource.PromissoriaResource;
+import com.server.resource.TituloStatusResource;
 import com.server.resource.TitulosResource;
 import org.restlet.Application;
 import org.restlet.Component;
@@ -29,6 +29,7 @@ public class ServerApp {
         router.attach("/promissoria", PromissoriaResource.class);
         router.attach("/duplicada", DuplicadaResource.class);
         router.attach("/titulos/{fornecedor}", TitulosResource.class);
+        router.attach("/titulos2/{status}", TituloStatusResource.class);
         
         Application app = new Application();
         app.setInboundRoot(router);

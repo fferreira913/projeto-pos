@@ -1,11 +1,12 @@
 package com.server.resource;
 
-import com.br.util.Util;
+import com.br.util.Operacoes;
 import com.business.core.app.Promissoria;
 import com.business.negocio.DaoTitulo;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.restlet.ext.json.JsonRepresentation;
 import org.restlet.representation.Representation;
@@ -20,7 +21,7 @@ import org.restlet.resource.ServerResource;
 public class PromissoriaResource extends ServerResource{
     
     @Post
-    public Representation salvarPromissoria(Representation representation) throws IOException, ParseException{
+    public Representation salvarPromissoria(Representation representation) throws IOException, ParseException, JSONException{
         JsonRepresentation jsonRepresentation = new JsonRepresentation(representation);
         JSONObject jSONObject = jsonRepresentation.getJsonObject();
         
@@ -30,7 +31,7 @@ public class PromissoriaResource extends ServerResource{
         promissoria.setFornecedor(jSONObject.getString("fornecedor"));
         promissoria.setDataEmissao(new Date());
         promissoria.setDataPagamento(new Date());
-        promissoria.setStatus(Util.verificaStatus(jSONObject.getString("status")));
+        promissoria.setStatus(Operacoes.verificaStatus(jSONObject.getString("status")));
         
         DaoTitulo daoTitulo = new DaoTitulo();
         

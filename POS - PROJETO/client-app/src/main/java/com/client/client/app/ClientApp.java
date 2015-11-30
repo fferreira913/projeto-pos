@@ -16,10 +16,10 @@ import org.restlet.resource.ClientResource;
 public class ClientApp {
 
     public static void main(String[] args) throws IOException {
-        //atualizarProduto();
+        atualizarProduto();
         //salvarProduto();
         //salvarPedido();
-        salvarComanda();
+        //salvarComanda();
     }
 
     public static void salvarProduto() throws IOException {
@@ -46,10 +46,10 @@ public class ClientApp {
     public static void atualizarProduto() throws IOException {
         /*Salvar Produto*/
         Produto produto = new Produto();
-        produto.setCodigo(1001);
+        produto.setCodigo(1000);
         produto.setPreco(8.00);
         produto.setQuantidade(1200);
-        produto.setTipo("Salgado");
+        produto.setTipo("Refrigerante");
 
         JSONObject jSONObject = new JSONObject();
         jSONObject.put("codigo", produto.getCodigo());

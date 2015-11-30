@@ -6,6 +6,7 @@ import com.business.negocio.DaoPedido;
 import java.io.IOException;
 import java.util.List;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.restlet.ext.json.JsonRepresentation;
 import org.restlet.representation.Representation;
@@ -20,7 +21,7 @@ import org.restlet.resource.ServerResource;
 public class PedidoResource extends ServerResource {
 
     @Post
-    public Representation salvarPedido(Representation representation) throws IOException {
+    public Representation salvarPedido(Representation representation) throws IOException, JSONException {
         JsonRepresentation jsonRepresentation = new JsonRepresentation(representation);
         JSONObject jsono = jsonRepresentation.getJsonObject();
 

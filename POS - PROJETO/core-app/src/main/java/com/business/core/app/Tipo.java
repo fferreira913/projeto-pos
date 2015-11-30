@@ -6,5 +6,8 @@ package com.business.core.app;
  */
 public enum Tipo {
     
-    REFRIGERANTE, SALGADO, PIZZA_UM_SABOR, PIZZA_DOIS_SABORES
+    REFRIGERANTE, 
+    SALGADO, 
+    PIZZA_UM_SABOR, 
+    PIZZA_DOIS_SABORES
 }

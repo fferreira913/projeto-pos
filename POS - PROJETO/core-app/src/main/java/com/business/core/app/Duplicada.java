@@ -35,6 +35,6 @@ public class Duplicada extends Titulo implements Serializable{
 
     @Override
     public String toString() {
-        return "Duplicada{" + "banco=" + banco + '}';
+        return "Duplicada{" + super.toString() + "banco=" + banco + '}';
     }
 }

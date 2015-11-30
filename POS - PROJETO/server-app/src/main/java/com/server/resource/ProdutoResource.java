@@ -3,6 +3,7 @@ package com.server.resource;
 import com.business.core.app.Produto;
 import com.business.negocio.DaoProduto;
 import java.io.IOException;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Post;
@@ -18,7 +19,7 @@ import org.restlet.resource.ServerResource;
 public class ProdutoResource extends ServerResource {
 
     @Post
-    public Representation salvarProduto(Representation representation) throws IOException {
+    public Representation salvarProduto(Representation representation) throws IOException, JSONException {
         JsonRepresentation jsonR = new JsonRepresentation(representation);
         JSONObject json = jsonR.getJsonObject();
 
@@ -39,7 +40,7 @@ public class ProdutoResource extends ServerResource {
     }
 
     @Put
-    public Representation atualizarEstoque(Representation representation) throws IOException {
+    public Representation atualizarEstoque(Representation representation) throws IOException, JSONException {
         JsonRepresentation jsonR = new JsonRepresentation(representation);
         JSONObject json = jsonR.getJsonObject();
 
