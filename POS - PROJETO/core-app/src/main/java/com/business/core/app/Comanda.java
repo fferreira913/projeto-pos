@@ -1,21 +1,15 @@
 package com.business.core.app;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 /**
  *
  * @author Fatinha de Sousa
  */
 
-@Entity
 public class Comanda implements Serializable{
     
-    @Id
     private int codigo;
-    @OneToOne
     private Pedido pedido;
     private double total;
     private boolean pago;

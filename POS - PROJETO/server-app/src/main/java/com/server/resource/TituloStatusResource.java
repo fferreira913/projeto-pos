@@ -1,7 +1,7 @@
 package com.server.resource;
 
 import com.br.util.Operacoes;
-import com.business.negocio.DaoTitulo;
+import com.business.negocio.DaoContasPagar;
 import org.json.JSONArray;
 import org.restlet.ext.json.JsonRepresentation;
 import org.restlet.representation.Representation;
@@ -19,7 +19,7 @@ public class TituloStatusResource extends ServerResource{
         
         String status = (String) getRequestAttributes().get("status");
         
-        DaoTitulo daoTitulo = new DaoTitulo();
+        DaoContasPagar daoTitulo = new DaoContasPagar();
         
         JSONArray array = new JSONArray(daoTitulo.listarTitulosPorStatus(Operacoes.verificaStatus(status)));
         

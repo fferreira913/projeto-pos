@@ -1,6 +1,6 @@
 package com.server.resource;
 
-import com.business.negocio.DaoTitulo;
+import com.business.negocio.DaoContasPagar;
 import org.json.JSONArray;
 import org.restlet.ext.json.JsonRepresentation;
 import org.restlet.representation.Representation;
@@ -15,7 +15,7 @@ public class TitulosFornecedorResource extends ServerResource {
 
     @Get
     public Representation listarTitulosPorFornecedor() {
-        DaoTitulo daoTitulo = new DaoTitulo();
+        DaoContasPagar daoTitulo = new DaoContasPagar();
         String fornecedor = (String) getRequestAttributes().get("fornecedor");
         
         JSONArray jsArray = new JSONArray(daoTitulo.listarTitulosPorFornecedor(fornecedor));

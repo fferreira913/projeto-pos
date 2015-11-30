@@ -2,7 +2,7 @@ package com.server.resource;
 
 import com.br.util.Operacoes;
 import com.business.core.app.Promissoria;
-import com.business.negocio.DaoTitulo;
+import com.business.negocio.DaoContasPagar;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
@@ -33,7 +33,7 @@ public class PromissoriaResource extends ServerResource{
         promissoria.setDataPagamento(new Date());
         promissoria.setStatus(Operacoes.verificaStatus(jSONObject.getString("status")));
         
-        DaoTitulo daoTitulo = new DaoTitulo();
+        DaoContasPagar daoTitulo = new DaoContasPagar();
         
         if(daoTitulo.salvarPromissoria(promissoria)){
             return new StringRepresentation("Salvo com sucesso!");

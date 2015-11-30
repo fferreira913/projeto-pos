@@ -2,7 +2,7 @@ package com.server.resource;
 
 import com.br.util.Operacoes;
 import com.business.core.app.Duplicada;
-import com.business.negocio.DaoTitulo;
+import com.business.negocio.DaoContasPagar;
 import java.io.IOException;
 import java.util.Date;
 import org.json.JSONException;
@@ -34,7 +34,7 @@ public class DuplicadaResource extends ServerResource{
         duplicada.setFornecedor(jSONObject.getString("fornecedor"));
         duplicada.setStatus(Operacoes.verificaStatus(jSONObject.getString("status")));
         
-        DaoTitulo daoTitulo = new DaoTitulo();
+        DaoContasPagar daoTitulo = new DaoContasPagar();
         if(daoTitulo.salvarDuplicada(duplicada)){
             return new StringRepresentation("Salvo com sucesso!");
         }else{

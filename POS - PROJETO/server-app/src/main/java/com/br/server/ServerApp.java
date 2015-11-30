@@ -1,5 +1,6 @@
 package com.br.server;
 
+import com.server.resource.CaixaResource;
 import com.server.resource.ComandaResource;
 import com.server.resource.DuplicadaResource;
 import com.server.resource.PedidoResource;
@@ -25,12 +26,15 @@ public class ServerApp {
         Router router = new Router();
         router.attach("/produto", ProdutoResource.class);
         router.attach("/pedido", PedidoResource.class);
-        router.attach("/caixa", ComandaResource.class);
+        router.attach("/comanda", ComandaResource.class);
+        router.attach("/caixa", CaixaResource.class);
+        
+        /*
         router.attach("/promissoria", PromissoriaResource.class);
         router.attach("/duplicada", DuplicadaResource.class);
         router.attach("/titulos/{fornecedor}", TitulosFornecedorResource.class);
         router.attach("/titulos2/{status}", TituloStatusResource.class);
-        
+        */
         Application app = new Application();
         app.setInboundRoot(router);
         component.getDefaultHost().attach("/app", app);

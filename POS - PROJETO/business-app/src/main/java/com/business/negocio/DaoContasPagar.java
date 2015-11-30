@@ -13,7 +13,7 @@ import javax.persistence.Query;
  *
  * @author Fatinha de Sousa
  */
-public class DaoTitulo {
+public class DaoContasPagar {
     
     EntityManager em = Conection.getEntityManager();
     
@@ -64,5 +64,16 @@ public class DaoTitulo {
         
         return (List<Titulo>) query.getResultList();
         
+    }
+    
+    public boolean atualizarTitulos(Titulo titulo){
+        
+        try {
+            em.merge(titulo);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

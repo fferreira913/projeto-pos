@@ -11,7 +11,7 @@ import java.util.List;
 public class App {
 
     public static void main(String[] args) {
-        DaoTitulo daoTitulo = new DaoTitulo();
+        DaoContasPagar daoTitulo = new DaoContasPagar();
         
         List<Titulo> titulos = daoTitulo.listarTitulosPorFornecedor("Hora 10");
         

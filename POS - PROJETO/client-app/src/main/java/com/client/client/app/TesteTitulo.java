@@ -18,10 +18,10 @@ import org.restlet.resource.ClientResource;
 public class TesteTitulo {
 
     public static void main(String [] args) throws IOException{
-        //salvarPromissoria();
+        salvarPromissoria();
         //salvarDuplicada();
         //listarTitulosPorFornecedor();
-        listarTitulosPorStatus();
+        //listarTitulosPorStatus();
     }
     
     /*Teste Positivo*/
@@ -31,10 +31,10 @@ public class TesteTitulo {
         
         promissoria.setDataEmissao(new Date());
         promissoria.setDataPagamento(new Date());
-        promissoria.setDescricao("Promissoria 01");
-        promissoria.setFornecedor("Brasil");
-        promissoria.setNumero("101-003");
-        promissoria.setStatus(Status.VENCIDO);
+        promissoria.setDescricao("Promissoria 04");
+        promissoria.setFornecedor("EUA");
+        promissoria.setNumero("101-007");
+        promissoria.setStatus(Status.A_VENCER);
         
         JSONObject jsono = new JSONObject();
         jsono.put("dataEmissao", promissoria.getDataEmissao());

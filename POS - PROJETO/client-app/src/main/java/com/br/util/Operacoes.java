@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author Fatinha de Sousa
  */
-public class Util {
+public class Operacoes {
 
     private static final DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
     
