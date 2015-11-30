@@ -6,7 +6,7 @@ import com.server.resource.PedidoResource;
 import com.server.resource.ProdutoResource;
 import com.server.resource.PromissoriaResource;
 import com.server.resource.TituloStatusResource;
-import com.server.resource.TitulosResource;
+import com.server.resource.TitulosFornecedorResource;
 import org.restlet.Application;
 import org.restlet.Component;
 import org.restlet.data.Protocol;
@@ -28,7 +28,7 @@ public class ServerApp {
         router.attach("/caixa", ComandaResource.class);
         router.attach("/promissoria", PromissoriaResource.class);
         router.attach("/duplicada", DuplicadaResource.class);
-        router.attach("/titulos/{fornecedor}", TitulosResource.class);
+        router.attach("/titulos/{fornecedor}", TitulosFornecedorResource.class);
         router.attach("/titulos2/{status}", TituloStatusResource.class);
         
         Application app = new Application();

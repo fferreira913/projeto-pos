@@ -51,19 +51,10 @@ public class DaoTitulo {
     }
     
     public List<Titulo> listarTitulosPorFornecedor(String fornecedor){
-        List<Titulo> titulos = new ArrayList();
-        
         Query query = em.createQuery("SELECT t FROM Titulo t where t.fornecedor = :fornecedor");
         query.setParameter("fornecedor", fornecedor);
         
-        if(!query.getResultList().isEmpty()){
-            titulos = query.getResultList();
-        }else{
-            titulos = null;
-        }
-        
-        return titulos;
-        
+        return (List<Titulo>) query.getResultList();
     }
     
     public List<Titulo> listarTitulosPorStatus(Status status){

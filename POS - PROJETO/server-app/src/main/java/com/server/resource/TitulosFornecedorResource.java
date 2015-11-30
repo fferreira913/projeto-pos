@@ -11,7 +11,7 @@ import org.restlet.resource.ServerResource;
  *
  * @author Fatinha de Sousa
  */
-public class TitulosResource extends ServerResource {
+public class TitulosFornecedorResource extends ServerResource {
 
     @Get
     public Representation listarTitulosPorFornecedor() {
