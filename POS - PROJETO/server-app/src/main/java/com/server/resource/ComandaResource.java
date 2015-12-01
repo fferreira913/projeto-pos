@@ -15,13 +15,11 @@ import org.restlet.resource.ServerResource;
  */
 public class ComandaResource extends ServerResource{
     
-    private static JSONObject jSONObject = null;
-    
     @Post
     public Representation abrirComanda(Representation representation) throws IOException, JSONException {
         JsonRepresentation jsonRepresentation = new JsonRepresentation(representation);
         
-        jSONObject = jsonRepresentation.getJsonObject();
+        JSONObject jSONObject = jsonRepresentation.getJsonObject();
         
         return new StringRepresentation("Dados recebidos com sucesso");
     }

@@ -28,8 +28,8 @@ public class DuplicadaResource extends ServerResource{
         Duplicada duplicada = new Duplicada();
         duplicada.setNumero(jSONObject.getString("numero"));
         duplicada.setBanco(Operacoes.verificarBanco(jSONObject.getString("banco")));
-        duplicada.setDataEmissao(new Date());
-        duplicada.setDataPagamento(new Date());
+        duplicada.setDataEmissao(jSONObject.getString("dataEmissao"));
+        duplicada.setDataPagamento(jSONObject.getString("dataPagamento"));
         duplicada.setDescricao(jSONObject.getString("descricao"));
         duplicada.setFornecedor(jSONObject.getString("fornecedor"));
         duplicada.setStatus(Operacoes.verificaStatus(jSONObject.getString("status")));

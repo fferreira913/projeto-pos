@@ -4,7 +4,6 @@ import com.business.core.app.Duplicada;
 import com.business.core.app.Promissoria;
 import com.business.core.app.Status;
 import com.business.core.app.Titulo;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;

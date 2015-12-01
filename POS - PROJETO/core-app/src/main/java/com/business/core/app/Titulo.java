@@ -21,10 +21,8 @@ public class Titulo implements Serializable{
     
     @Id
     private String numero;
-    @Temporal(TemporalType.DATE)
-    private Date dataEmissao;
-    @Temporal(TemporalType.DATE)
-    private Date dataPagamento;
+    private String dataEmissao;
+    private String dataPagamento;
     private String descricao;
     @Enumerated(EnumType.STRING)
     private Status status;
@@ -34,7 +32,7 @@ public class Titulo implements Serializable{
         
     }
 
-    public Titulo(String numero, Date dataEmissao, Date dataPagamento, String descricao, Status status, String fornecedor) {
+    public Titulo(String numero, String dataEmissao, String dataPagamento, String descricao, Status status, String fornecedor) {
         this.numero = numero;
         this.dataEmissao = dataEmissao;
         this.dataPagamento = dataPagamento;
@@ -51,19 +49,19 @@ public class Titulo implements Serializable{
         this.numero = numero;
     }
 
-    public Date getDataEmissao() {
+    public String getDataEmissao() {
         return dataEmissao;
     }
 
-    public void setDataEmissao(Date dataEmissao) {
+    public void setDataEmissao(String dataEmissao) {
         this.dataEmissao = dataEmissao;
     }
 
-    public Date getDataPagamento() {
+    public String getDataPagamento() {
         return dataPagamento;
     }
 
-    public void setDataPagamento(Date dataPagamento) {
+    public void setDataPagamento(String dataPagamento) {
         this.dataPagamento = dataPagamento;
     }
 

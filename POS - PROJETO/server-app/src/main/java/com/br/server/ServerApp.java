@@ -29,12 +29,11 @@ public class ServerApp {
         router.attach("/comanda", ComandaResource.class);
         router.attach("/caixa", CaixaResource.class);
         
-        /*
         router.attach("/promissoria", PromissoriaResource.class);
         router.attach("/duplicada", DuplicadaResource.class);
-        router.attach("/titulos/{fornecedor}", TitulosFornecedorResource.class);
-        router.attach("/titulos2/{status}", TituloStatusResource.class);
-        */
+        router.attach("/titulosFornecedor/{fornecedor}", TitulosFornecedorResource.class);
+        router.attach("/titulosStatus/{status}", TituloStatusResource.class);
+        
         Application app = new Application();
         app.setInboundRoot(router);
         component.getDefaultHost().attach("/app", app);

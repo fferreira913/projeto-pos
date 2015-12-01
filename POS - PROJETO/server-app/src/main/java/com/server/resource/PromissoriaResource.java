@@ -29,8 +29,8 @@ public class PromissoriaResource extends ServerResource{
         promissoria.setNumero(jSONObject.getString("numero"));
         promissoria.setDescricao(jSONObject.getString("descricao"));
         promissoria.setFornecedor(jSONObject.getString("fornecedor"));
-        promissoria.setDataEmissao(new Date());
-        promissoria.setDataPagamento(new Date());
+        promissoria.setDataEmissao(jSONObject.getString("dataEmissao"));
+        promissoria.setDataPagamento(jSONObject.getString("dataPagamento"));
         promissoria.setStatus(Operacoes.verificaStatus(jSONObject.getString("status")));
         
         DaoContasPagar daoTitulo = new DaoContasPagar();
