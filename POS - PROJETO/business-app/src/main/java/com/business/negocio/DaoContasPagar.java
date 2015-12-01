@@ -65,10 +65,25 @@ public class DaoContasPagar {
         
     }
     
-    public boolean atualizarTitulos(Titulo titulo){
+    public boolean atualizarPromissoria(Promissoria promissoria){
         
         try {
-            em.merge(titulo);
+            em.getTransaction().begin();
+            em.merge(promissoria);
+            em.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    public boolean atualizarDuplicada(Duplicada duplicada){
+        
+        try {
+            em.getTransaction().begin();
+            em.merge(duplicada);
+            em.getTransaction().commit();
             return true;
         } catch (Exception e) {
             e.printStackTrace();

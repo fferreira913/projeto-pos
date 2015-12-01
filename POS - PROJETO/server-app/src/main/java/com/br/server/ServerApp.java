@@ -1,5 +1,7 @@
 package com.br.server;
 
+import com.server.resource.BaixarDuplicada;
+import com.server.resource.BaixarPromissoria;
 import com.server.resource.CaixaResource;
 import com.server.resource.ComandaResource;
 import com.server.resource.DuplicadaResource;
@@ -33,6 +35,8 @@ public class ServerApp {
         router.attach("/duplicada", DuplicadaResource.class);
         router.attach("/titulosFornecedor/{fornecedor}", TitulosFornecedorResource.class);
         router.attach("/titulosStatus/{status}", TituloStatusResource.class);
+        router.attach("/pagarPromissoria", BaixarPromissoria.class);
+        router.attach("/pagarDuplicada", BaixarDuplicada.class);
         
         Application app = new Application();
         app.setInboundRoot(router);
