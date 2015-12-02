@@ -1,15 +1,12 @@
 package com.business.core.app;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *

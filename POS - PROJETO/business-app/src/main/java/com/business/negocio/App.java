@@ -1,8 +1,6 @@
 package com.business.negocio;
 
-import com.business.core.app.Status;
-import com.business.core.app.Titulo;
-import java.util.List;
+import com.business.core.app.Caixa;
 
 /**
  *
@@ -11,18 +9,10 @@ import java.util.List;
 public class App {
 
     public static void main(String[] args) {
-        DaoContasPagar daoTitulo = new DaoContasPagar();
+        Caixa caixa = new Caixa(1, 0);
         
-        List<Titulo> titulos = daoTitulo.listarTitulosPorFornecedor("Hora 10");
+        DaoCaixa daoCaixa = new DaoCaixa();
         
-        for (Titulo titulo : titulos) {
-            System.out.println("Titulo: " +titulo.getDescricao());
-        }
-        
-        List<Titulo> titulos1 = daoTitulo.listarTitulosPorStatus(Status.VENCIDO);
-        
-        for (Titulo titulo : titulos1) {
-            System.out.println("Titulo: " +titulo.getDescricao());
-        }
+        daoCaixa.salvarCaixa(caixa);
     }
 }

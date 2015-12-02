@@ -1,11 +1,12 @@
 package com.business.core.app;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -16,21 +17,24 @@ import javax.persistence.ManyToMany;
 public class Pedido implements Serializable{
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
-    private String cliente;
+    private int comanda;
     private boolean entregue;
-    @ManyToMany
-    private List<Produto> produtos;
+    @ManyToOne
+    private Produto produto;
+    private int quantidade;
     
     public Pedido(){
-        this.produtos = new ArrayList();
+        
     }
 
-    public Pedido(int codigo, String cliente, boolean entregue) {
+    public Pedido(int codigo, int comanda, boolean entregue, Produto produto, int quantidade) {
         this.codigo = codigo;
-        this.cliente = cliente;
+        this.comanda = comanda;
         this.entregue = entregue;
-        this.produtos = new ArrayList();
+        this.produto = produto;
+        this.quantidade = quantidade;
     }
 
     public int getCodigo() {
@@ -41,12 +45,12 @@ public class Pedido implements Serializable{
         this.codigo = codigo;
     }
 
-    public String getCliente() {
-        return cliente;
+    public int getComanda() {
+        return comanda;
     }
 
-    public void setCliente(String cliente) {
-        this.cliente = cliente;
+    public void setComanda(int comanda) {
+        this.comanda = comanda;
     }
 
     public boolean isEntregue() {
@@ -57,16 +61,24 @@ public class Pedido implements Serializable{
         this.entregue = entregue;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
+    public Produto getProduto() {
+        return produto;
     }
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 
     @Override
     public String toString() {
-        return "Pedido{" + "codigo=" + codigo + ", cliente=" + cliente + ", entregue=" + entregue + '}';
+        return "Pedido{" + "codigo=" + codigo + ", comanda=" + comanda + ", entregue=" + entregue + ", produto=" + produto + ", quantidade=" + quantidade + '}';
     }
 }

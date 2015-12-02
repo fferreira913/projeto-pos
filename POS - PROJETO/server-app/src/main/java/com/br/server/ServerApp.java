@@ -13,6 +13,9 @@ import com.server.resource.TitulosFornecedorResource;
 import org.restlet.Application;
 import org.restlet.Component;
 import org.restlet.data.Protocol;
+import org.restlet.ext.json.JsonRepresentation;
+import org.restlet.representation.ReadableRepresentation;
+import org.restlet.resource.ClientResource;
 import org.restlet.routing.Router;
 
 /**
@@ -25,23 +28,19 @@ public class ServerApp {
         
         Component component = new Component();
         component.getServers().add(Protocol.HTTP, 80);
-        Router router = new Router();
-        router.attach("/produto", ProdutoResource.class);
-        router.attach("/pedido", PedidoResource.class);
-        router.attach("/comanda", ComandaResource.class);
-        router.attach("/caixa", CaixaResource.class);
+        component.getClients().add(Protocol.HTTP);
         
-        router.attach("/promissoria", PromissoriaResource.class);
-        router.attach("/duplicada", DuplicadaResource.class);
-        router.attach("/titulosFornecedor/{fornecedor}", TitulosFornecedorResource.class);
-        router.attach("/titulosStatus/{status}", TituloStatusResource.class);
-        router.attach("/pagarPromissoria", BaixarPromissoria.class);
-        router.attach("/pagarDuplicada", BaixarDuplicada.class);
+        Application negocio = new Application();
+        Router routerNegocio = new Router();
+        routerNegocio.attach("/comanda", ComandaResource.class);
+        negocio.setInboundRoot(routerNegocio);
+        component.getDefaultHost().attach("/negocio", negocio);
         
-        Application app = new Application();
-        app.setInboundRoot(router);
-        component.getDefaultHost().attach("/app", app);
-        
+        Application basico = new Application();
+        Router routerBasico = new Router();
+        routerBasico.attach("/pedido", PedidoResource.class);
+        basico.setInboundRoot(routerBasico);
+        component.getDefaultHost().attach("/basico", basico);
         component.start();
     }
     

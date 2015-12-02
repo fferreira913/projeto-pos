@@ -20,30 +20,15 @@ import org.restlet.resource.ServerResource;
  */
 public class PedidoResource extends ServerResource {
 
+    
     @Post
     public Representation salvarPedido(Representation representation) throws IOException, JSONException {
         JsonRepresentation jsonRepresentation = new JsonRepresentation(representation);
         JSONObject jsono = jsonRepresentation.getJsonObject();
 
         Pedido pedido = new Pedido();
-        pedido.setCodigo(jsono.getInt("codigo"));
-        pedido.setCliente(jsono.getString("cliente"));
-        pedido.setEntregue(jsono.getBoolean("entregue"));
+        pedido.setComanda(jsono.getInt("comanda"));
         
-        JSONArray produtos = jsono.getJSONArray("produtos");
-
-        for (int i = 0; i < produtos.length(); i++) {
-            JSONObject nObject = produtos.getJSONObject(i);
-            Produto produto = new Produto();
-            
-            produto.setCodigo(nObject.getInt("codigo"));
-            produto.setPreco(nObject.getDouble("preco"));
-            produto.setQuantidade(nObject.getInt("quantidade"));
-            produto.setTipo(nObject.getString("tipo"));
-            
-            pedido.getProdutos().add(produto);
-        }
-
         DaoPedido daoPedido = new DaoPedido();
 
         if (daoPedido.salvarPedido(pedido)) {
@@ -60,22 +45,8 @@ public class PedidoResource extends ServerResource {
 
         Pedido pedido = new Pedido();
         pedido.setCodigo(jsono.getInt("codigo"));
-        pedido.setCliente(jsono.getString("cliente"));
         pedido.setEntregue(jsono.getBoolean("entregue"));
         
-        JSONArray produtos = jsono.getJSONArray("produtos");
-
-        for (int i = 0; i < produtos.length(); i++) {
-            JSONObject nObject = produtos.getJSONObject(i);
-            Produto produto = new Produto();
-            
-            produto.setCodigo(nObject.getInt("codigo"));
-            produto.setPreco(nObject.getDouble("preco"));
-            produto.setQuantidade(nObject.getInt("quantidade"));
-            produto.setTipo(nObject.getString("tipo"));
-            
-            pedido.getProdutos().add(produto);
-        }
         
         DaoPedido daoPedido = new DaoPedido();
         

@@ -1,11 +1,8 @@
 package com.business.core.app;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 
 /**
  *
@@ -20,8 +17,6 @@ public class Produto implements Serializable{
     private String tipo;
     private double preco;
     private int quantidade;
-    @ManyToMany(mappedBy = "produtos")
-    private List<Pedido> pedidos;
     
     public Produto(){
         
@@ -32,7 +27,6 @@ public class Produto implements Serializable{
         this.tipo = tipo;
         this.preco = preco;
         this.quantidade = quantidade;
-        this.pedidos = new ArrayList<>();
     }
 
     public int getCodigo() {
@@ -67,16 +61,9 @@ public class Produto implements Serializable{
         this.quantidade = quantidade;
     }
 
-    public List<Pedido> getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(List<Pedido> pedidos) {
-        this.pedidos = pedidos;
-    }
-
     @Override
     public String toString() {
-        return "Produto{" + "codigo=" + codigo + ", tipoProduto=" + tipo + ", preco=" + preco + ", quantidade=" + quantidade + '}';
+        return "Produto{" + "codigo=" + codigo + ", tipo=" + tipo + ", preco=" + preco + ", quantidade=" + quantidade + '}';
     }
+    
 }
