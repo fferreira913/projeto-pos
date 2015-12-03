@@ -27,8 +27,7 @@ public class CaixaResource extends ServerResource {
         JSONObject jsono = jsonRepresentation.getJsonObject();
 
         double total = daoPedido.totalComanda(jsono.getInt("comanda"));
-        Caixa caixa = new Caixa();
-        caixa.setCodigo(1);
+        Caixa caixa =  daoCaixa.getCaixa(1);
         caixa.setValorTotal(caixa.getValorTotal() + total);
         
         System.out.println("CAIXA ATUALIZADO: " +caixa.getValorTotal());

@@ -36,4 +36,14 @@ public class DaoCaixa {
             return false;
         }
     }
+    
+    public Caixa getCaixa(int codigo){
+        
+        try {
+            return em.find(Caixa.class, codigo);
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
+    }
 }
