@@ -16,17 +16,13 @@ public class TesteComanda {
     public static void main(String[] args) throws IOException {
         //adicionarPedido();
         //abrirComanda();
-        gerenciador();
-        //fecharComanda();
+        //gerenciador();
+        fecharComanda();
     }
     
     public static void fecharComanda() throws IOException{
-        JSONObject jsono = new JSONObject();
-        jsono.put("comanda", 2222);
-        
-        ClientResource clientResource = new ClientResource("http://localhost:80/negocio/comanda");
-        JsonRepresentation jsonRepresentation = new JsonRepresentation(jsono);
-        ReadableRepresentation rr = (ReadableRepresentation) clientResource.put(jsonRepresentation);
+        ClientResource clientResource = new ClientResource("http://localhost:80/negocio/comanda/2222");
+        ReadableRepresentation rr = (ReadableRepresentation) clientResource.delete();
 
         System.out.println("Resposta: " + rr.getText());
 

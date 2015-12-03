@@ -5,6 +5,7 @@ import com.server.resource.CaixaResource;
 import com.server.resource.ComandaResource;
 import com.server.resource.DuplicadaResource;
 import com.server.resource.EntregaResource;
+import com.server.resource.GerenciadorPagamento;
 import com.server.resource.GerenciadorResource;
 import com.server.resource.PedidoResource;
 import com.server.resource.ProdutoResource;
@@ -52,6 +53,7 @@ public class ServerApp {
         Application gerenciador = new Application();
         Router routerGerenciador = new Router();
         routerGerenciador.attach("/gerenciadorPedidos", GerenciadorResource.class);
+        routerGerenciador.attach("/gerenciadorPagamento", GerenciadorPagamento.class);
         gerenciador.setInboundRoot(routerGerenciador);
         component.getDefaultHost().attach("/gerenciador", gerenciador);
         

@@ -72,9 +72,11 @@ public class DaoPedido {
 
     public boolean deletarComanda(int comanda) {
         try {
+            em.getTransaction().begin();
             Query query = em.createQuery("DELETE FROM Pedido p WHERE p.comanda = :comanda");
             query.setParameter("comanda", comanda);
             query.executeUpdate();
+            em.getTransaction().commit();
             return true;
         } catch (Exception e) {
             e.getMessage();
