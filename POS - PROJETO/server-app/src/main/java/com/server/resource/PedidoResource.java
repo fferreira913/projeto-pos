@@ -3,8 +3,8 @@ package com.server.resource;
 import com.business.core.app.Pedido;
 import com.business.core.app.Produto;
 import com.business.negocio.DaoPedido;
+import com.business.negocio.DaoProduto;
 import java.io.IOException;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.restlet.ext.json.JsonRepresentation;
@@ -39,22 +39,24 @@ public class PedidoResource extends ServerResource {
     }
     
     @Put
-    public Representation entregarPedido(Representation representation) throws IOException, JSONException{
-        JsonRepresentation jsonRepresentation = new JsonRepresentation(representation);
-        JSONObject jsono = jsonRepresentation.getJsonObject();
-
-        Pedido pedido = new Pedido();
-        pedido.setCodigo(jsono.getInt("codigo"));
-        pedido.setEntregue(jsono.getBoolean("entregue"));
-        
-        
+    public Representation atualizarPedido(Representation representation) throws IOException, JSONException{
         DaoPedido daoPedido = new DaoPedido();
         
-        if(daoPedido.atualizarPedido(pedido)){
-            return new StringRepresentation("Pedido Entregue Com Sucesso");
-        }else{
-            return new StringRepresentation("Erro!");
-        }
+        JsonRepresentation jsonRepresentation = new JsonRepresentation(representation);
+        JSONObject jsono = jsonRepresentation.getJsonObject();
         
+        Pedido pedido = daoPedido.buscarPedido(jsono.getInt("pedido"));
+        
+        if(pedido != null){
+            pedido.setEntregue(jsono.getBoolean("entregue"));
+            if(daoPedido.atualizarPedido(pedido)){
+                return new StringRepresentation("Pedido Entregue Com Sucesso!");
+            }else{
+                return new StringRepresentation("Erro Desconhecido");
+            }
+            
+        }else{
+            return new StringRepresentation("Nenhum Pedido Encontrado!");
+        }
     }
 }

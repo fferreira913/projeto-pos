@@ -15,16 +15,16 @@ public class TesteProduto {
 
     public static void main(String [] args) throws IOException{
         
-        //salvarProduto();
-        atualizarProduto();
+        salvarProduto();
+        //atualizarProduto();
     }
     /*Testes Positivos*/
     public static void salvarProduto() throws IOException {
         Produto produto = new Produto();
-        produto.setCodigo(1003);
-        produto.setPreco(32.00);
-        produto.setQuantidade(0);
-        produto.setTipo("Pizza Dois Sabores");
+        produto.setCodigo(1004);
+        produto.setPreco(6);
+        produto.setQuantidade(1500);
+        produto.setTipo("Salgado");
 
         JSONObject jSONObject = new JSONObject();
         jSONObject.put("codigo", produto.getCodigo());
@@ -32,7 +32,7 @@ public class TesteProduto {
         jSONObject.put("quantidade", produto.getQuantidade());
         jSONObject.put("tipo", produto.getTipo());
 
-        ClientResource clientResource = new ClientResource("http://localhost:80/app/produto");
+        ClientResource clientResource = new ClientResource("http://localhost:80/basico/produto");
         JsonRepresentation jsonRepresentation = new JsonRepresentation(jSONObject);
         ReadableRepresentation rr = (ReadableRepresentation) clientResource.post(jsonRepresentation);
 

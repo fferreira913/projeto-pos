@@ -14,10 +14,13 @@ public class DaoCaixa {
     public boolean atualizarCaixa(Caixa caixa){
         
         try {
+            em.getTransaction().begin();
             em.merge(caixa);
+            em.getTransaction().commit();
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+            //e.printStackTrace();
             return false;
         }
     }

@@ -25,6 +25,16 @@ public class DaoProduto {
         }
     }
     
+    public Produto buscarProduto(int codigo){
+        try {
+            return em.find(Produto.class, codigo);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
     public boolean atualizarEstoque(Produto produto) {
         
         try {

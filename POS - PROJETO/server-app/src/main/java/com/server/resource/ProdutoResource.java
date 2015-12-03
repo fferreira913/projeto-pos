@@ -41,22 +41,19 @@ public class ProdutoResource extends ServerResource {
 
     @Put
     public Representation atualizarEstoque(Representation representation) throws IOException, JSONException {
+        DaoProduto daoProduto = new DaoProduto();
         JsonRepresentation jsonR = new JsonRepresentation(representation);
         JSONObject json = jsonR.getJsonObject();
 
-        Produto produto = new Produto();
-        produto.setCodigo(json.getInt("codigo"));
-        produto.setPreco(json.getDouble("preco"));
-        produto.setQuantidade(json.getInt("quantidade"));
-        produto.setTipo(json.getString("tipo"));
+        Produto produto = daoProduto.buscarProduto(json.getInt("produto"));
+        int qtdProduto = json.getInt("quantidade");
 
-        DaoProduto daoProduto = new DaoProduto();
-        boolean resposta = daoProduto.atualizarEstoque(produto);
-
-        if (resposta == true) {
-            return new StringRepresentation("Atualizado Com Sucesso");
+        if (produto.getQuantidade() > qtdProduto) {
+            produto.setQuantidade(produto.getQuantidade() - qtdProduto);
+            daoProduto.atualizarEstoque(produto);
+            return new StringRepresentation("true");
         } else {
-            return new StringRepresentation("Erro!");
+            return new StringRepresentation("false");
         }
     }
 }

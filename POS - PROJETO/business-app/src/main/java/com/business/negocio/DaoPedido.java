@@ -1,7 +1,9 @@
 package com.business.negocio;
 
 import com.business.core.app.Pedido;
+import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -39,4 +41,32 @@ public class DaoPedido {
         }
     }
     
+    public Pedido buscarPedido(int codigo){
+        
+        try {
+            return em.find(Pedido.class, codigo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public List<Pedido> listarPedidosPorComanda(int comanda){
+        Query query = em.createQuery("select p from Pedido p where p.comanda = :comanda");
+        query.setParameter("comanda", comanda);
+        
+        return (List<Pedido>) query.getResultList();
+    }
+    
+    public double totalComanda(int comanda){
+        List<Pedido> pedidos = listarPedidosPorComanda(comanda);
+        double total = 0;
+        
+        for (Pedido pedido : pedidos) {
+            total += pedido.getQuantidade() * pedido.getProduto().getPreco();
+        }
+        
+        return total;
+        
+    }
 }
