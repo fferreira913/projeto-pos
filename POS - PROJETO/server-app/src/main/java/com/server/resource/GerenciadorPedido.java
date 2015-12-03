@@ -15,7 +15,7 @@ import org.restlet.resource.ServerResource;
  *
  * @author Fatinha de Sousa
  */
-public class GerenciadorResource extends ServerResource {
+public class GerenciadorPedido extends ServerResource {
 
     @Put
     public Representation atualizarDados(Representation representation) throws IOException, JSONException {

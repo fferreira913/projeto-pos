@@ -33,23 +33,29 @@ public class ComandaResource extends ServerResource {
     public Representation adicionarPedido(Representation representation) throws IOException, JSONException {
         JsonRepresentation jsonRepresentation = new JsonRepresentation(representation);
         JSONObject jsono = jsonRepresentation.getJsonObject();
-        
+
         String codigoComanda = (String) getRequestAttributes().get("codigoComanda");
         int codigo = Integer.parseInt(codigoComanda);
-        
+
         jsono.put("comanda", codigo);
-        
+
         ClientResource clientResource = new ClientResource("http://localhost:80/basico/pedido");
         JsonRepresentation representation1 = new JsonRepresentation(jsono);
         ReadableRepresentation rr = (ReadableRepresentation) clientResource.put(representation1);
         return new StringRepresentation(rr.getText());
     }
-    
+
     @Delete
-    public Representation fecharComanda(Representation representation) throws IOException, JSONException{
-        JsonRepresentation jsonRepresentation = new JsonRepresentation(representation);
-        JSONObject jsono = jsonRepresentation.getJsonObject();
-        
-        return new StringRepresentation("");
+    public Representation fecharComanda(Representation representation) throws JSONException, IOException {
+
+        String comanda = (String) getRequestAttributes().get("codigoComanda");
+        JSONObject jsono = new JSONObject();
+        jsono.put("comanda", Integer.parseInt(comanda));
+
+        ClientResource clientResource = new ClientResource("http://localhost:80/gerenciador/gerenciadorPagamento");
+        JsonRepresentation representation1 = new JsonRepresentation(jsono);
+        ReadableRepresentation rr = (ReadableRepresentation) clientResource.put(representation1);
+        return new StringRepresentation(rr.getText());
+
     }
 }
