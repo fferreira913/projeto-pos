@@ -1,8 +1,9 @@
 package com.business.negocio;
 
-import com.business.core.app.Caixa;
-import com.business.core.app.Pedido;
-import java.util.List;
+import com.business.core.app.Duplicada;
+import com.business.core.app.Promissoria;
+import com.business.core.app.Status;
+import com.business.core.app.Titulo;
 
 /**
  *
@@ -11,20 +12,17 @@ import java.util.List;
 public class App {
 
     public static void main(String[] args) {
-        DaoPedido daoPedido = new DaoPedido();
-        DaoCaixa daoCaixa = new DaoCaixa();
 
-        Caixa caixa = new Caixa();
-        caixa.setCodigo(1);
-        caixa.setValorTotal(caixa.getValorTotal() + 250);
-        daoCaixa.atualizarCaixa(caixa);
-        /*
-        double total = daoPedido.totalComanda(1111);
+        DaoContasPagar contasPagar = new DaoContasPagar();
 
-        Caixa caixa = new Caixa();
-        caixa.setCodigo(1);
-        caixa.setValorTotal(caixa.getValorTotal() + total);
-
-        daoCaixa.atualizarCaixa(caixa);*/
+        Titulo titulo = contasPagar.buscarTitulo("101-005");
+        titulo.setStatus(Status.PAGO);
+        contasPagar.atualizarTitulo(titulo);
+        
+        if (titulo instanceof Promissoria) {
+            System.out.println("Promissoria");
+        } else if (titulo instanceof Duplicada) {
+            System.out.println("Duplicada");
+        }
     }
 }

@@ -13,17 +13,17 @@ import javax.persistence.Query;
  * @author Fatinha de Sousa
  */
 public class DaoContasPagar {
-    
+
     EntityManager em = Conection.getEntityManager();
-    
-    public boolean salvarPromissoria(Promissoria promissoria){
-        
+
+    public boolean salvarPromissoria(Promissoria promissoria) {
+
         try {
-            
+
             em.getTransaction().begin();
             em.persist(promissoria);
             em.getTransaction().commit();
-            
+
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -31,45 +31,45 @@ public class DaoContasPagar {
             return false;
         }
     }
-    
-    public boolean salvarDuplicada(Duplicada duplicada){
-        
+
+    public boolean salvarDuplicada(Duplicada duplicada) {
+
         try {
-            
+
             em.getTransaction().begin();
             em.persist(duplicada);
             em.getTransaction().commit();
-            
+
             return true;
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             em.getTransaction().getRollbackOnly();
             return false;
         }
     }
-    
-    public List<Titulo> listarTitulosPorFornecedor(String fornecedor){
+
+    public List<Titulo> listarTitulosPorFornecedor(String fornecedor) {
         Query query = em.createQuery("SELECT t FROM Titulo t where t.fornecedor = :fornecedor");
         query.setParameter("fornecedor", fornecedor);
-        
+
         return (List<Titulo>) query.getResultList();
     }
-    
-    public List<Titulo> listarTitulosPorStatus(Status status){
-        
+
+    public List<Titulo> listarTitulosPorStatus(Status status) {
+
         Query query = em.createQuery("SELECT t FROM Titulo t where t.status = :status");
         query.setParameter("status", status);
-        
+
         return (List<Titulo>) query.getResultList();
-        
+
     }
-    
-    public boolean atualizarPromissoria(Promissoria promissoria){
-        
+
+    public boolean atualizarTitulo(Titulo titulo) {
+
         try {
             em.getTransaction().begin();
-            em.merge(promissoria);
+            em.merge(titulo);
             em.getTransaction().commit();
             return true;
         } catch (Exception e) {
@@ -77,17 +77,13 @@ public class DaoContasPagar {
             return false;
         }
     }
-    
-    public boolean atualizarDuplicada(Duplicada duplicada){
-        
+
+    public Titulo buscarTitulo(String codigo) {
         try {
-            em.getTransaction().begin();
-            em.merge(duplicada);
-            em.getTransaction().commit();
-            return true;
+            return em.find(Titulo.class, codigo);
         } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+            e.getMessage();
+            return null;
         }
     }
 }

@@ -8,6 +8,7 @@ import org.restlet.representation.ReadableRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
 import org.restlet.resource.ClientResource;
+import org.restlet.resource.Delete;
 import org.restlet.resource.Post;
 import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
@@ -42,6 +43,13 @@ public class ComandaResource extends ServerResource {
         JsonRepresentation representation1 = new JsonRepresentation(jsono);
         ReadableRepresentation rr = (ReadableRepresentation) clientResource.put(representation1);
         return new StringRepresentation(rr.getText());
+    }
+    
+    @Delete
+    public Representation fecharComanda(Representation representation) throws IOException, JSONException{
+        JsonRepresentation jsonRepresentation = new JsonRepresentation(representation);
+        JSONObject jsono = jsonRepresentation.getJsonObject();
         
+        return new StringRepresentation("");
     }
 }

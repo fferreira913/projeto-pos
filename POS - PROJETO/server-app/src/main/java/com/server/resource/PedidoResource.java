@@ -20,7 +20,6 @@ import org.restlet.resource.ServerResource;
  */
 public class PedidoResource extends ServerResource {
 
-    
     @Post
     public Representation salvarPedido(Representation representation) throws IOException, JSONException {
         JsonRepresentation jsonRepresentation = new JsonRepresentation(representation);
@@ -28,7 +27,7 @@ public class PedidoResource extends ServerResource {
 
         Pedido pedido = new Pedido();
         pedido.setComanda(jsono.getInt("comanda"));
-        
+
         DaoPedido daoPedido = new DaoPedido();
 
         if (daoPedido.salvarPedido(pedido)) {
@@ -37,26 +36,41 @@ public class PedidoResource extends ServerResource {
             return new StringRepresentation("Erro!");
         }
     }
-    
+
     @Put
-    public Representation atualizarPedido(Representation representation) throws IOException, JSONException{
+    public Representation atualizarPedido(Representation representation) throws IOException, JSONException {
         DaoPedido daoPedido = new DaoPedido();
-        
+
         JsonRepresentation jsonRepresentation = new JsonRepresentation(representation);
         JSONObject jsono = jsonRepresentation.getJsonObject();
         
-        Pedido pedido = daoPedido.buscarPedido(jsono.getInt("pedido"));
-        
-        if(pedido != null){
-            pedido.setEntregue(jsono.getBoolean("entregue"));
-            if(daoPedido.atualizarPedido(pedido)){
-                return new StringRepresentation("Pedido Entregue Com Sucesso!");
-            }else{
-                return new StringRepresentation("Erro Desconhecido");
-            }
+        if (jsono.getBoolean("entregue") == false) {
+            DaoProduto daoProduto = new DaoProduto();
+            Pedido pedido = daoPedido.buscarPedido(jsono.getInt("pedido"));
+            pedido.setQuantidade(jsono.getInt("quantidade"));
             
-        }else{
-            return new StringRepresentation("Nenhum Pedido Encontrado!");
+            Produto produto = daoProduto.buscarProduto(jsono.getInt("produto"));
+            pedido.setProduto(produto);
+            
+            if(daoPedido.atualizarPedido(pedido)){
+                return new StringRepresentation("Pedido salvo com sucesso!");
+            }else{
+                return new StringRepresentation("Erro!");
+            }
+        } else {
+            Pedido pedido = daoPedido.buscarPedido(jsono.getInt("pedido"));
+
+            if (pedido != null) {
+                pedido.setEntregue(jsono.getBoolean("entregue"));
+                if (daoPedido.atualizarPedido(pedido)) {
+                    return new StringRepresentation("Pedido Entregue Com Sucesso!");
+                } else {
+                    return new StringRepresentation("Erro Desconhecido");
+                }
+
+            } else {
+                return new StringRepresentation("Nenhum Pedido Encontrado!");
+            }
         }
     }
 }

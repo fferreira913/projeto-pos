@@ -36,7 +36,7 @@ public class DuplicadaResource extends ServerResource{
         
         DaoContasPagar daoTitulo = new DaoContasPagar();
         if(daoTitulo.salvarDuplicada(duplicada)){
-            return new StringRepresentation("Salvo com sucesso!");
+            return new StringRepresentation("Duplicada salva com sucesso!");
         }else{
             return new StringRepresentation("Erro!");
         }

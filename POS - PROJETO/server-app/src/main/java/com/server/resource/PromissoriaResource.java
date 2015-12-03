@@ -36,7 +36,7 @@ public class PromissoriaResource extends ServerResource{
         DaoContasPagar daoTitulo = new DaoContasPagar();
         
         if(daoTitulo.salvarPromissoria(promissoria)){
-            return new StringRepresentation("Salvo com sucesso!");
+            return new StringRepresentation("Promissoria salva com sucesso!");
         }else{
             return new StringRepresentation("Erro!");
         }    

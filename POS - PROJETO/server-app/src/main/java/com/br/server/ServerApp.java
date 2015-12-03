@@ -1,11 +1,16 @@
 package com.br.server;
 
+import com.server.resource.BaixarTituloResource;
 import com.server.resource.CaixaResource;
 import com.server.resource.ComandaResource;
+import com.server.resource.DuplicadaResource;
 import com.server.resource.EntregaResource;
 import com.server.resource.GerenciadorResource;
 import com.server.resource.PedidoResource;
 import com.server.resource.ProdutoResource;
+import com.server.resource.PromissoriaResource;
+import com.server.resource.TituloStatusResource;
+import com.server.resource.TitulosFornecedorResource;
 import org.restlet.Application;
 import org.restlet.Component;
 import org.restlet.data.Protocol;
@@ -36,6 +41,11 @@ public class ServerApp {
         routerBasico.attach("/pedido", PedidoResource.class);
         routerBasico.attach("/produto", ProdutoResource.class);
         routerBasico.attach("/caixa", CaixaResource.class);
+        routerBasico.attach("/promissoria", PromissoriaResource.class);
+        routerBasico.attach("/duplicada", DuplicadaResource.class);
+        routerBasico.attach("/titulosFornecedor/{fornecedor}", TitulosFornecedorResource.class);
+        routerBasico.attach("/titulosStatus/{status}", TituloStatusResource.class);
+        routerBasico.attach("/baixarTitulo", BaixarTituloResource.class);
         basico.setInboundRoot(routerBasico);
         component.getDefaultHost().attach("/basico", basico);
         

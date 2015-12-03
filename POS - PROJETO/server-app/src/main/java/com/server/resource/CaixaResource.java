@@ -30,8 +30,6 @@ public class CaixaResource extends ServerResource {
         Caixa caixa =  daoCaixa.getCaixa(1);
         caixa.setValorTotal(caixa.getValorTotal() + total);
         
-        System.out.println("CAIXA ATUALIZADO: " +caixa.getValorTotal());
-
         if (daoCaixa.atualizarCaixa(caixa)) {
             return new StringRepresentation("Caixa atualizado com sucesso");
         } else {
