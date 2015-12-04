@@ -38,7 +38,7 @@ public class DuplicadaResource extends ServerResource{
         if(daoTitulo.salvarDuplicada(duplicada)){
             return new StringRepresentation("Duplicada salva com sucesso!");
         }else{
-            return new StringRepresentation("Erro!");
+            return new StringRepresentation("Erro! Numero de Duplicada Inválido");
         }
     }
 }

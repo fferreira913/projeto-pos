@@ -33,7 +33,7 @@ public class PedidoResource extends ServerResource {
         if (daoPedido.salvarPedido(pedido)) {
             return new StringRepresentation("Salvo Com Sucesso");
         } else {
-            return new StringRepresentation("Erro!");
+            return new StringRepresentation("Ocorreu um erro durante o processamento de sua requisição!");
         }
     }
 

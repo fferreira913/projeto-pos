@@ -19,8 +19,6 @@ public class DaoProduto {
             em.getTransaction().commit();
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
-            em.getTransaction().rollback();
             return false;
         }
     }

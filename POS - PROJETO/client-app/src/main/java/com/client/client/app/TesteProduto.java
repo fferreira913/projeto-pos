@@ -21,7 +21,7 @@ public class TesteProduto {
     /*Testes Positivos*/
     public static void salvarProduto() throws IOException {
         Produto produto = new Produto();
-        produto.setCodigo(1004);
+        produto.setCodigo(1005);
         produto.setPreco(6);
         produto.setQuantidade(1500);
         produto.setTipo("Salgado");

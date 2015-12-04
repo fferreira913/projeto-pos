@@ -33,9 +33,9 @@ public class TesteTitulo {
         
         promissoria.setDataEmissao("01/12/2015");
         promissoria.setDataPagamento("13/12/2015");
-        promissoria.setDescricao("Promissoria 01");
+        promissoria.setDescricao("Promissoria 03");
         promissoria.setFornecedor("BRASIL");
-        promissoria.setNumero("101-007");
+        promissoria.setNumero("101-008");
         promissoria.setStatus(Status.A_VENCER);
         
         JSONObject jsono = new JSONObject();
@@ -60,9 +60,9 @@ public class TesteTitulo {
         duplicada.setBanco(Banco.BB);
         duplicada.setDataEmissao("01/12/2015");
         duplicada.setDataPagamento("13/12/2015");
-        duplicada.setDescricao("Duplicada 02");
+        duplicada.setDescricao("Duplicada 03");
         duplicada.setFornecedor("Russia");
-        duplicada.setNumero("101-005");
+        duplicada.setNumero("101-010");
         duplicada.setStatus(Status.A_VENCER);
         
         JSONObject jsono = new JSONObject();
@@ -98,7 +98,7 @@ public class TesteTitulo {
     
     public static void pagarTitulo() throws IOException{
         Titulo titulo = new Titulo();
-        titulo.setNumero("101-005");
+        titulo.setNumero("101-006");
         titulo.setStatus(Status.PAGO);
         
         JSONObject jsono = new JSONObject();

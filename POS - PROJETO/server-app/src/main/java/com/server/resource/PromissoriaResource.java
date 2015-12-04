@@ -5,7 +5,6 @@ import com.business.core.app.Promissoria;
 import com.business.negocio.DaoContasPagar;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.restlet.ext.json.JsonRepresentation;
@@ -38,7 +37,7 @@ public class PromissoriaResource extends ServerResource{
         if(daoTitulo.salvarPromissoria(promissoria)){
             return new StringRepresentation("Promissoria salva com sucesso!");
         }else{
-            return new StringRepresentation("Erro!");
+            return new StringRepresentation("Erro! Numero de Promissoria inválido");
         }    
     }    
 }

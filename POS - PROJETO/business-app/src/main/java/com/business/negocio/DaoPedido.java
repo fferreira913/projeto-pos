@@ -21,8 +21,6 @@ public class DaoPedido {
             em.getTransaction().commit();
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
-            em.getTransaction().getRollbackOnly();
             return false;
         }
     }
@@ -35,8 +33,6 @@ public class DaoPedido {
             em.getTransaction().commit();
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
-            em.getTransaction().getRollbackOnly();
             return false;
         }
     }
@@ -46,7 +42,6 @@ public class DaoPedido {
         try {
             return em.find(Pedido.class, codigo);
         } catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }
