@@ -18,7 +18,7 @@ public class TesteProduto {
         salvarProduto();
         //atualizarProduto();
     }
-    /*Testes Positivos*/
+    
     public static void salvarProduto() throws IOException {
         Produto produto = new Produto();
         produto.setCodigo(1004);

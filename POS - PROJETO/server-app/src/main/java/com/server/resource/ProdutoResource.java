@@ -35,7 +35,7 @@ public class ProdutoResource extends ServerResource {
         if (resposta == true) {
             return new StringRepresentation("Salvo Com Sucesso");
         } else {
-            return new StringRepresentation("Erro!");
+            return new StringRepresentation("Erro! Esse codigo ja existe");
         }
     }
 

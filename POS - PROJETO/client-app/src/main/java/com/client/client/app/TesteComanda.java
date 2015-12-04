@@ -14,23 +14,16 @@ import org.restlet.resource.ClientResource;
 public class TesteComanda {
 
     public static void main(String[] args) throws IOException {
-        //adicionarPedido();
-        //abrirComanda();
-        //gerenciador();
-        fecharComanda();
+        //abrirPedido();
+        //adicionarProduto();
+        gerenciadorEntrega();
+        //fecharComanda();
     }
     
-    public static void fecharComanda() throws IOException{
-        ClientResource clientResource = new ClientResource("http://localhost:80/negocio/comanda/2222");
-        ReadableRepresentation rr = (ReadableRepresentation) clientResource.delete();
-
-        System.out.println("Resposta: " + rr.getText());
-
-    }
-
-    public static void abrirComanda() throws IOException {
+    /*Abre um novo pedido vazio*/
+    public static void abrirPedido() throws IOException {
         Pedido pedido = new Pedido();
-        pedido.setComanda(2222);
+        pedido.setComanda(8888);
 
         JSONObject jsono = new JSONObject();
         jsono.put("comanda", pedido.getComanda());
@@ -43,14 +36,15 @@ public class TesteComanda {
 
     }
 
-    public static void adicionarPedido() throws IOException {
+    /*Adiciona um item ao pedido da comanda*/
+    public static void adicionarProduto() throws IOException {
         JSONObject jsono = new JSONObject();
         jsono.put("produto", "1004");
         jsono.put("quantidade", 5);
         jsono.put("entregue", false);
-        jsono.put("pedido", 18);
+        jsono.put("pedido", 33);
 
-        ClientResource clientResource = new ClientResource("http://localhost:80/negocio/comanda/1111");
+        ClientResource clientResource = new ClientResource("http://localhost:80/negocio/comanda/8888");
         JsonRepresentation jsonRepresentation = new JsonRepresentation(jsono);
         ReadableRepresentation rr = (ReadableRepresentation) clientResource.put(jsonRepresentation);
 
@@ -58,11 +52,12 @@ public class TesteComanda {
 
     }
     
-    public static void gerenciador() throws IOException{
+    /*Entrega os pedidos e atualiza o caixa*/
+    public static void gerenciadorEntrega() throws IOException{
         JSONObject jsono = new JSONObject();
         jsono.put("produto", "1004");
         jsono.put("quantidade", 5);
-        jsono.put("pedido", 18);
+        jsono.put("pedido", 34);
         jsono.put("tipo", "salgado");
         
         ClientResource clientResource = new ClientResource("http://localhost:80/negocio/entrega");
@@ -70,5 +65,14 @@ public class TesteComanda {
         ReadableRepresentation rr = (ReadableRepresentation) clientResource.put(jsonRepresentation);
 
         System.out.println("Resposta: " + rr.getText());
+    }
+    
+    /*Fecha a comanda*/
+    public static void fecharComanda() throws IOException{
+        ClientResource clientResource = new ClientResource("http://localhost:80/negocio/comanda/1111");
+        ReadableRepresentation rr = (ReadableRepresentation) clientResource.delete();
+
+        System.out.println("Resposta: " + rr.getText());
+
     }
 }

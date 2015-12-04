@@ -26,8 +26,6 @@ public class DaoContasPagar {
 
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
-            em.getTransaction().getRollbackOnly();
             return false;
         }
     }
@@ -43,8 +41,6 @@ public class DaoContasPagar {
             return true;
 
         } catch (Exception e) {
-            e.printStackTrace();
-            em.getTransaction().getRollbackOnly();
             return false;
         }
     }
@@ -73,7 +69,6 @@ public class DaoContasPagar {
             em.getTransaction().commit();
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
             return false;
         }
     }
