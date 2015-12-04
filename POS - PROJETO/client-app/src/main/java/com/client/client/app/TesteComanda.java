@@ -16,8 +16,8 @@ public class TesteComanda {
     public static void main(String[] args) throws IOException {
         //abrirPedido();
         //adicionarProduto();
-        gerenciadorEntrega();
-        //fecharComanda();
+        //gerenciadorEntrega();
+        fecharComanda();
     }
     
     /*Abre um novo pedido vazio*/
@@ -39,10 +39,10 @@ public class TesteComanda {
     /*Adiciona um item ao pedido da comanda*/
     public static void adicionarProduto() throws IOException {
         JSONObject jsono = new JSONObject();
-        jsono.put("produto", "1004");
+        jsono.put("produto", "1003");
         jsono.put("quantidade", 5);
         jsono.put("entregue", false);
-        jsono.put("pedido", 33);
+        jsono.put("pedido", 36);
 
         ClientResource clientResource = new ClientResource("http://localhost:80/negocio/comanda/8888");
         JsonRepresentation jsonRepresentation = new JsonRepresentation(jsono);
@@ -57,7 +57,7 @@ public class TesteComanda {
         JSONObject jsono = new JSONObject();
         jsono.put("produto", "1004");
         jsono.put("quantidade", 5);
-        jsono.put("pedido", 34);
+        jsono.put("pedido", 36);
         jsono.put("tipo", "salgado");
         
         ClientResource clientResource = new ClientResource("http://localhost:80/negocio/entrega");
@@ -69,7 +69,7 @@ public class TesteComanda {
     
     /*Fecha a comanda*/
     public static void fecharComanda() throws IOException{
-        ClientResource clientResource = new ClientResource("http://localhost:80/negocio/comanda/1111");
+        ClientResource clientResource = new ClientResource("http://localhost:80/negocio/comanda/8888");
         ReadableRepresentation rr = (ReadableRepresentation) clientResource.delete();
 
         System.out.println("Resposta: " + rr.getText());
