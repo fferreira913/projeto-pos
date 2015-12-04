@@ -35,7 +35,7 @@ public class TesteTitulo {
         promissoria.setDataPagamento("13/12/2015");
         promissoria.setDescricao("Promissoria 03");
         promissoria.setFornecedor("BRASIL");
-        promissoria.setNumero("101-007777");
+        promissoria.setNumero("333-333");
         promissoria.setStatus(Status.A_VENCER);
         
         JSONObject jsono = new JSONObject();
@@ -62,7 +62,7 @@ public class TesteTitulo {
         duplicada.setDataPagamento("13/12/2015");
         duplicada.setDescricao("Duplicada 03");
         duplicada.setFornecedor("Russia");
-        duplicada.setNumero("101-888");
+        duplicada.setNumero("333-334");
         duplicada.setStatus(Status.A_VENCER);
         
         JSONObject jsono = new JSONObject();
@@ -98,7 +98,7 @@ public class TesteTitulo {
     
     public static void pagarTitulo() throws IOException{
         Titulo titulo = new Titulo();
-        titulo.setNumero("101-888");
+        titulo.setNumero("333-335");
         titulo.setStatus(Status.PAGO);
         
         JSONObject jsono = new JSONObject();

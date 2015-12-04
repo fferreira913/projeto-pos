@@ -16,27 +16,22 @@ import org.restlet.resource.ServerResource;
  *
  * @author Fatinha de Sousa
  */
-
 public class GerenciadorPagamento extends ServerResource {
 
     @Put
-    public Representation fecharComanda(Representation representation) throws IOException, JSONException{
+    public Representation fecharComanda(Representation representation) throws IOException, JSONException {
         JsonRepresentation jsonRepresentation = new JsonRepresentation(representation);
         JSONObject jsono = jsonRepresentation.getJsonObject();
-        
-        DaoPedido daoPedido = new DaoPedido();
-        double total = daoPedido.totalComanda(jsono.getInt("comanda"));
-        
-        jsono.put("total", total);
-        
+
         ClientResource clientResource = new ClientResource("http://localhost:80/basico/caixa");
         JsonRepresentation jr = new JsonRepresentation(jsono);
         ReadableRepresentation rr = (ReadableRepresentation) clientResource.put(jr);
-        
-        if(rr.getText().equalsIgnoreCase("true")){
-            daoPedido.deletarComanda(jsono.getInt("comanda"));
-            return new StringRepresentation("Comanda Encerrada Com Sucesso");
-        }else{
+
+        if (rr.getText().equalsIgnoreCase("true")) {
+            ClientResource cr = new ClientResource("http://localhost:80/basico/pedido/" + jsono.getInt("comanda"));
+            ReadableRepresentation r = (ReadableRepresentation) cr.delete();
+            return new StringRepresentation(r.getText());
+        } else {
             return new StringRepresentation("Saldo Insuficiente");
         }
     }

@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import org.restlet.ext.json.JsonRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.representation.StringRepresentation;
+import org.restlet.resource.Delete;
 import org.restlet.resource.Post;
 import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
@@ -70,6 +71,21 @@ public class PedidoResource extends ServerResource {
             }
         } else {
             return new StringRepresentation("Nenhum Pedido Encontrado!");
+        }
+    }
+    
+    @Delete
+    public Representation pagarComanda(Representation representation) {
+
+        DaoPedido daoPedido = new DaoPedido();
+        
+        String codigoComanda = (String) getRequestAttributes().get("comanda");
+        int codigo = Integer.parseInt(codigoComanda);
+        
+        if(daoPedido.deletarComanda(codigo)){
+            return new StringRepresentation("Comanda Paga Com Sucesso");
+        }else{
+            return new StringRepresentation("Erro!");
         }
     }
 }

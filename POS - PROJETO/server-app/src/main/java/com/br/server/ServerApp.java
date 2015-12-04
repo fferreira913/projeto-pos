@@ -40,6 +40,7 @@ public class ServerApp {
         Application basico = new Application();
         Router routerBasico = new Router();
         routerBasico.attach("/pedido", PedidoResource.class);
+        routerBasico.attach("/pedido/{comanda}", PedidoResource.class);
         routerBasico.attach("/produto", ProdutoResource.class);
         routerBasico.attach("/caixa", CaixaResource.class);
         routerBasico.attach("/promissoria", PromissoriaResource.class);

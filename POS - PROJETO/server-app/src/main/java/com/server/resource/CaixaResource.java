@@ -21,14 +21,16 @@ public class CaixaResource extends ServerResource {
     @Put
     public Representation atualizarCaixa(Representation representation) throws IOException, JSONException {
         DaoCaixa daoCaixa = new DaoCaixa();
+        DaoPedido daoPedido = new DaoPedido();
 
         JsonRepresentation jsonRepresentation = new JsonRepresentation(representation);
         JSONObject jsono = jsonRepresentation.getJsonObject();
 
-        double total = jsono.getDouble("total");
-        Caixa caixa =  daoCaixa.getCaixa(1);
+        double total = daoPedido.totalComanda(jsono.getInt("comanda"));
+
+        Caixa caixa = daoCaixa.getCaixa(1);
         caixa.setValorTotal(caixa.getValorTotal() + total);
-        
+
         if (daoCaixa.atualizarCaixa(caixa)) {
             return new StringRepresentation("true");
         } else {

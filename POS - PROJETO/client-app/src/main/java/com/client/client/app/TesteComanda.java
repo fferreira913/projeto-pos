@@ -42,7 +42,7 @@ public class TesteComanda {
         jsono.put("produto", "1003");
         jsono.put("quantidade", 5);
         jsono.put("entregue", false);
-        jsono.put("pedido", 36);
+        jsono.put("pedido", 51);
 
         ClientResource clientResource = new ClientResource("http://localhost:80/negocio/comanda/8888");
         JsonRepresentation jsonRepresentation = new JsonRepresentation(jsono);
@@ -55,9 +55,9 @@ public class TesteComanda {
     /*Entrega os pedidos e atualiza o caixa*/
     public static void gerenciadorEntrega() throws IOException{
         JSONObject jsono = new JSONObject();
-        jsono.put("produto", "1004");
+        jsono.put("produto", "1003");
         jsono.put("quantidade", 5);
-        jsono.put("pedido", 36);
+        jsono.put("pedido", 51);
         jsono.put("tipo", "salgado");
         
         ClientResource clientResource = new ClientResource("http://localhost:80/negocio/entrega");
