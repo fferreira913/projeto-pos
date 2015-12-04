@@ -54,7 +54,9 @@ public class DaoPedido {
     }
 
     public double totalComanda(int comanda) {
+        
         List<Pedido> pedidos = listarPedidosPorComanda(comanda);
+        
         double total = 0;
 
         for (Pedido pedido : pedidos) {
@@ -74,8 +76,9 @@ public class DaoPedido {
             em.getTransaction().commit();
             return true;
         } catch (Exception e) {
-            e.getMessage();
+            //e.getMessage();
             return false;
         }
     }
+    
 }

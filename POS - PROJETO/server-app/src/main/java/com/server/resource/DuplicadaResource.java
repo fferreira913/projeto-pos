@@ -4,7 +4,6 @@ import com.br.util.Operacoes;
 import com.business.core.app.Duplicada;
 import com.business.negocio.DaoContasPagar;
 import java.io.IOException;
-import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.restlet.ext.json.JsonRepresentation;

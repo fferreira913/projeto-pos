@@ -27,11 +27,16 @@ public class BaixarTituloResource extends ServerResource {
         JSONObject jsono = jsonRepresentation.getJsonObject();
 
         Titulo titulo = daoTitulo.buscarTitulo(jsono.getString("numero"));
-        titulo.setStatus(Operacoes.verificaStatus(jsono.getString("status")));
-        if (daoTitulo.atualizarTitulo(titulo)) {
-            return new StringRepresentation("Baixar Titulo OK");
+
+        if (titulo != null) {
+            titulo.setStatus(Operacoes.verificaStatus(jsono.getString("status")));
+            if (daoTitulo.atualizarTitulo(titulo)) {
+                return new StringRepresentation("Baixar Titulo OK");
+            } else {
+                return new StringRepresentation("Erro");
+            }
         } else {
-            return new StringRepresentation("Erro");
+            return new StringRepresentation("Nenhum Titulo Encontrado!");
         }
     }
 }
